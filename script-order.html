@@ -1,0 +1,18 @@
+<html>
+	<body></body>
+	<script>
+		function loadScript(src) {
+			return new Promise(function (resolve, reject) {
+				const script = document.createElement("script");
+				script.src = src;
+				script.onload = resolve;
+				script.onerror = reject;
+				document.head.appendChild(script);
+			});
+		}
+
+		loadScript("script-1-url.js")
+			.then(() => loadScript("script-2-url.js"))
+			.catch((error) => console.error("Error loading script:", error));
+	</script>
+</html>
